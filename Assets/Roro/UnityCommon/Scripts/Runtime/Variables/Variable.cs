@@ -106,6 +106,7 @@ namespace UnityCommon.Variables
 			var prefsVariables = module.prefsVariables = new List<Variable>(8);
 
 			var loadedVariables = Resources.LoadAll<Variable>("Variables");
+			//Debug.Log(loadedVariables.Length + " variables found");
 
 			for (int i = 0; i < loadedVariables.Length; i++)
 			{

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityCommon.Modules;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Utility
+namespace Roro.Scripts.StateImplementation
 {
     public abstract class State<T>
     {

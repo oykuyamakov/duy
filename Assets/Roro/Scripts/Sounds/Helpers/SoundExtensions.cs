@@ -1,6 +1,7 @@
+using Roro.Scripts.Sounds.Data;
 using UnityEngine;
 
-namespace Sounds.Helpers
+namespace Roro.Scripts.Sounds.Helpers
 {
 	public static class SoundExtensions
 	{

@@ -1,6 +1,8 @@
+using System;
+using Roro.Scripts.Serialization;
 using UnityEngine;
 
-namespace Sounds
+namespace Roro.Scripts.Sounds.Data
 {
 	[CreateAssetMenu(menuName = "Sound", fileName = "_Sound")]
 	public class Sound : ScriptableObject
@@ -15,12 +17,25 @@ namespace Sounds
 		private float m_Pitch = 1f;
 		
 		[SerializeField]
-		private bool m_Loop = false;
+		public bool Loop = false;
+
+		private int m_Id = -1;
+
+		public int GetId()
+		{
+			if (m_Id != -1)
+				return m_Id;
+			
+			var identifier = SerializationWizard.Default.GetInt("Loop_Identifier", 0);
+			m_Id = identifier;
+			SerializationWizard.Default.SetInt("Loop_Identifier", identifier+1);
+			SerializationWizard.Default.Push();
+			return m_Id;
+		}
 
 		public AudioClip Clip   => m_AudioClip;
 		public float     Volume => m_Volume;
 		public float     Pitch  => m_Pitch;
 
-		public bool Loop => m_Loop;
 	}
 }

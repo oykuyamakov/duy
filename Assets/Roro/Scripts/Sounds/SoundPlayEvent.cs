@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using Events;
-using Sounds;
-using UnityEngine;
+using Roro.Scripts.Sounds.Data;
 
-public class SoundPlayEvent : Event<SoundPlayEvent>
+namespace Roro.Scripts.Sounds
 {
-    public Sound Sound;
-    public bool Loop;
-    public int LoopIndex;
-    public bool MainSong;
-    public static SoundPlayEvent Get(Sound sound, bool loop = false, bool mainSong = false)
+    public class SoundPlayEvent : Event<SoundPlayEvent>
     {
-        var evt = GetPooledInternal();
-        evt.Sound = sound;
-        evt.Loop = loop;
-        evt.MainSong = mainSong;
-        return evt;
+        public Sound Sound;
+        public bool Loop;
+        public bool MainSong;
+        public static SoundPlayEvent Get(Sound sound, bool loop = false, bool mainSong = false)
+        {
+            var evt = GetPooledInternal();
+            evt.Sound = sound;
+            evt.Loop = loop;
+            evt.MainSong = mainSong;
+            return evt;
+        }
     }
 }

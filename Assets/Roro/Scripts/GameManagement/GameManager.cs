@@ -1,9 +1,12 @@
+using Roro.Scripts.Serialization;
+using Roro.Scripts.Sounds.Core;
 using Roro.Scripts.Utility;
 using Sirenix.OdinInspector;
 using UnityCommon.Modules;
 using UnityCommon.Singletons;
 using UnityCommon.Variables;
 using UnityEngine;
+using Utility;
 
 namespace Roro.Scripts.GameManagement
 {
@@ -31,8 +34,6 @@ namespace Roro.Scripts.GameManagement
 
             Variable.Initialize();
             
-            m_GameIsRunning =  Variable.Get<BoolVariable>("GameIsRunning");
-
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
             Application.backgroundLoadingPriority = ThreadPriority.Normal;
@@ -40,6 +41,22 @@ namespace Roro.Scripts.GameManagement
             Application.targetFrameRate = m_TargetFrameRate;
             
             ConditionalsModule.CreateSingletonInstance();
+
+            var a = SerializationWizard.Default.GetInt("sound_count", 0);
+            Debug.Log(a);
+            SerializationWizard.Default.SetInt("sound_count", 2);
+            a = SerializationWizard.Default.GetInt("sound_count", 0);
+            Debug.Log(a);
+            
+            
+            m_GameIsRunning =  Variable.Get<BoolVariable>("GameIsRunning");
+            
+            m_GameIsRunning.Value = true;
+            
+            SoundManager.Instance.PlayOneShot(SoundDatabase.Get().CountDownSound);
+
+            //Conditional.Wait(10).Do(() => m_GameIsRunning.Value = true);
+
         }
     }
 }
